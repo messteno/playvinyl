@@ -1,0 +1,90 @@
+@import "app/variables.scss";
+@import "app/vendor.scss";
+@import "app/nav/nav.scss";
+@import "app/cart/widget.scss";
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    color: $main-color;
+}
+
+.back {
+    background-image: url("../img/back.jpg");
+    background-size: cover;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+.panel-gray {
+    .panel-heading {
+        border-color: $gray;
+        background-color: $gray;
+    }
+
+    a {
+        color: $gray;
+    }
+
+    a:hover {
+        color: $gray;
+    }
+
+    border-color: black !important;
+}
+
+.panel-green {
+    .panel-heading {
+        border-color: $green;
+        background-color: $green;
+    }
+
+    a {
+        color: $green;
+    }
+
+    a:hover {
+        color: $green;
+    }
+
+    border-color: $green !important;
+}
+
+.panel-yellow {
+    .panel-heading {
+        border-color: $yellow;
+        background-color: $yellow;
+    }
+
+    a {
+        color: $yellow;
+    }
+
+    a:hover {
+        color: $yellow;
+    }
+
+    border-color: $yellow !important;
+}
+
+.main {
+    padding: 0 15px;
+
+    @media (min-width: $screen-sm-min) {
+        margin: 0 0 0 250px;
+        padding: 20px 30px 0 30px;
+    }
+}
+
+span.fa.space {
+    margin-right: 5px;
+}
+
+.huge {
+    font-size: 23px;
+}
+

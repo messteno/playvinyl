@@ -1,0 +1,12 @@
+$main-color: #fbfbfb;
+$yellow: #f0ad4e;
+$green: #5cb85c;
+$gray: #222;
+$icon-font-path: '../fonts/';
+
+@mixin border-radius($topleft, $topright: $topleft, $bottomright: $topleft, $bottomleft: $topleft) {
+    -moz-border-radius: $topleft $topright $bottomright $bottomleft;
+    -webkit-border-radius: $topleft $topright $bottomright $bottomleft;
+    border-radius: $topleft $topright $bottomright $bottomleft;
+}
+

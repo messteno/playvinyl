@@ -1,0 +1,49 @@
+.cart-widget {
+    @media (max-width: $screen-xs-max) {
+        margin-top: 10px; 
+    }
+
+    .panel-heading {
+        @include border-radius(2px, 2px, 0, 0);
+    }
+
+    .count {
+        font-size: 25px;
+
+        @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+            font-size: 18px;
+        }
+    }
+
+    .price {
+        font-size: 18px;
+    }
+
+    .controls {
+        margin-bottom: 10px;
+        .btn {
+            background-color: $gray;
+        }
+    }
+
+    .small-cart-item {
+        width: 100%;
+        max-width: 180px;
+        padding: 5px;
+        color: black;
+
+        .name {
+            font-size: 14px;
+        }
+
+        .price {
+            font-size: 14px;
+        }
+
+        .cart-item-remove {
+            text-align: center;
+            margin: 5px 0;
+        }
+    }
+}
+

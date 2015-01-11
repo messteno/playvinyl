@@ -1,0 +1,16 @@
+.env
+*.py[co]
+*.egg*
+*.db
+*.log
+*.swp
+*.swo
+.sass-cache/
+node_modules/
+bower_components/
+frontend/tmp/
+frontend/dist/
+media/
+static/
+logs/
+*/__pycache__
