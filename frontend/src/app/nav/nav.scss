@@ -1,6 +1,7 @@
 .navbar {
     margin-bottom: 0;
     border-radius: 0;
+    border-bottom: 1px solid #BF2205;
 }
 
 .nav-search-form {
@@ -24,8 +25,14 @@ ul.navbar-nav {
 }
 
 .navbar-nav i {
+    color: white;
+
     @media (min-width: $screen-sm-min) {
         margin: 0 15px;
+    }
+
+    &:hover {
+        color: #888888;
     }
 }
 

@@ -1,9 +1,9 @@
 var gulp = require('gulp'),
     gutil = require('gulp-util'),
     browserify = require('browserify'),
+    browserifyShim = require('browserify-shim'),
     watchify = require('watchify'),
     ngAnnotate = require('gulp-ng-annotate'),
-    browserifyShim = require('browserify-shim'),
     source = require('vinyl-source-stream'),
     sass = require('gulp-ruby-sass'),
     autoprefix = require('gulp-autoprefixer'),
@@ -19,6 +19,7 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     mainBowerFiles = require('main-bower-files'),
     csso = require('gulp-csso'),
+    minifyCss = require('gulp-minify-css'),
     eventStream = require('event-stream'),
     del = require('del'),
     streamify = require('gulp-streamify'),
@@ -42,6 +43,7 @@ gulp.task('sass', function() {
                     config.srcDotPath,
                     config.bowerDir + '/bootstrap-sass-official/assets/stylesheets',
                     config.bowerDir + '/fontawesome/scss',
+                    config.bowerDir + '/icomoon-sass/assets/scss',
                 ],
                 'sourcemap=none': true,
                 precision: 2
@@ -66,7 +68,7 @@ gulp.task('css', ['sass'], function () {
             .pipe(concat('app.css'));
 
     return eventStream.concat(bowerCss, appCss)
-        .pipe(csso())
+        .pipe(minifyCss())
         .pipe(concat(config.distPath + '/css/playvinyl.css'))
         .pipe(gulp.dest('./'));
 });
@@ -84,7 +86,10 @@ gulp.task('enable-watch-mode', function() {
 
 gulp.task('js', ['lint'], function () {
     var bundler = browserify({
-        entries: [config.srcDotPath + '/app/app.js'],
+        entries: [
+            config.srcDotPath + '/app/app.js'
+        ],
+        paths: ['./bower_components','./frontend/src/'],
         debug: !prod
     });
 
@@ -103,7 +108,7 @@ gulp.task('js', ['lint'], function () {
                 console.log(err.message);
                 this.emit('end');
             });
-        gutil.log('Started  \'browserify\'');
+        gutil.log('Started  \'' + gutil.colors.green('browserify') + '\'');
         return stream
             .pipe(source('/app/app.js'))
             .pipe(streamify(ngAnnotate()))
@@ -111,7 +116,7 @@ gulp.task('js', ['lint'], function () {
             .pipe(rename('playvinyl.js'))
             .pipe(gulp.dest(config.distPath + '/js/'))
             .on('finish', function() {
-                gutil.log('Fnieshed \'browserify\'');
+                gutil.log('Finished \'' + gutil.colors.green('browserify') + '\'');
             });
     }
 
@@ -151,8 +156,8 @@ gulp.task('misc', function () {
 });
 
 gulp.task('watch', ['enable-watch-mode', 'default'], function() {
-    gulp.watch(config.srcPath + '/**/*.scss', ['css']);
-    gulp.watch(config.srcPath + '/**/*.js', ['lint']);
+    gulp.watch(config.srcPath + '/app/**/*.scss', ['css']);
+    gulp.watch(config.srcPath + '/app/**/*.js', ['lint']);
     gulp.watch(config.srcPath + '/**/*.html', ['misc']);
     gulp.watch(config.srcPath + '/**/*.ico', ['misc']);
     gulp.watch(config.srcPath + '/img/**/*.{png,jpg}', ['images']);

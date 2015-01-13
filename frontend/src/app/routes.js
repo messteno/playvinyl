@@ -13,6 +13,7 @@ function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
             url: '/',
             templateUrl: '/static/app/main/main.html',
             title: 'Home',
+            controller: 'MainCtrl',
         });
     $urlRouterProvider
         .when('', '/')

@@ -44,20 +44,24 @@
         <div class="back"></div>
         <div class="ng-cloak" ng-controller="IndexCtrl">
             {% block header %}
-            <div ng-include="'{% static 'app/nav/nav.html' %}'"></div>
+            <header ng-include="'{% static 'app/nav/nav.html' %}'"></header>
             {% endblock %}
 
             <div class="main">
                 <div class="row">
-                    <div class="col-xs-12 col-sm-4 col-sm-push-8">
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-md-push-8">
                         <div ng-include="'{% static 'app/sidebar/right.html' %}'"></div>
                     </div>
-                    <div class="col-xs-12 col-sm-8 col-sm-pull-4">
+                    <div class="col-xs-12 col-sm-12 col-md-8 col-md-pull-4">
                         <div role="main" ui-view>
                         </div>
                     </div>
                 </div>
             </div>
+
+            {% block footer %}
+            <footer ng-include="'{% static 'app/footer/footer.html' %}'" class="footer"></footer>
+            {% endblock %}
         </div>
 
         {% compress js %}

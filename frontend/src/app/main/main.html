@@ -1,0 +1,94 @@
+<div owl-carousel=""></div>
+
+<div class="catalog">
+    <pagination total-items="230"
+                ng-model="currentPage" max-size="7"
+                class="pagination-sm"
+                boundary-links="true"
+                previous-text="<"
+                next-text=">"
+                first-text="<<"
+                last-text=">>"
+                >
+    </pagination>
+    <div class="catalog-item container-md-height" ng-repeat="vinyl in vinyls">
+        <div class="row row-xs-height">
+            <div class="vinyl-image col-xs-4 col-sm-3 col-xs-height">
+                <img class="cover img-responsive" src="static/img/vinyl.jpg" alt="">
+            </div>
+            <div class="vinyl-info col-xs-8 col-sm-9 col-xs-height">
+                <table>
+                    <tr class="vinyl-info-row">
+                        <div class="author">
+                            <a href="">
+                                {{ vinyl.author }}
+                            </a>
+                        </div>
+                    </tr>
+                    <tr class="vinyl-info-row">
+                        <td>
+                            <strong>Название:</strong>
+                        </td>
+                        <td>
+                            Supernatural Occurences Ep
+                        </td>
+                    </tr>
+                    <tr class="vinyl-info-row">
+                        <td>
+                            <strong>Дата релиза:</strong>
+                        </td>
+                        <td>
+                            13.10.2014
+                        </td>
+                    </tr>
+                    <tr class="vinyl-info-row">
+                        <td>
+                            <strong>Стиль:</strong>
+                        </td>
+                        <td>
+                            Techno
+                        </td>
+                    </tr>
+                    <tr class="vinyl-info-row">
+                        <td>
+                            <strong>Лейбл:</strong>
+                        </td>
+                        <td>
+                            Nachtstrom Schallplatten
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="row row-xs-height">
+            <div class="vinyl-rating col-xs-4 col-sm-3 col-xs-height">
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                </div>
+            </div>
+            <div class="vinyl-cart col-xs-8 col-sm-9 col-xs-height">
+                <div class="more pull-left"><i class="fa fa-play"></i> прослушать</div>
+                <div class="add-to-cart pull-right">
+                    <span class="fa fa-shopping-cart"></span>
+                </div>
+                <div class="price pull-right">
+                    250 <span class="fa fa-rub"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <pagination total-items="230"
+                ng-model="currentPage" max-size="7"
+                class="pagination-sm pagination-bottom"
+                boundary-links="true"
+                previous-text="<"
+                next-text=">"
+                first-text="<<"
+                last-text=">>"
+                >
+    </pagination>
+</div>

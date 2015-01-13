@@ -1,0 +1,86 @@
+.catalog {
+    text-align: center;
+
+    .pagination-bottom {
+        margin-top: 0;
+    }
+}
+
+.catalog-item {
+    padding: 0 15px;
+    margin-bottom: 25px;
+    text-align: left;
+    color: #222;
+
+    .vinyl-image {
+        background-color: #ED7B56;
+        padding: 5px;
+    }
+
+    .vinyl-info {
+        background-color: #D66F4E;
+        padding: 5px 10px;
+
+        table td {
+            padding-right: 10px;
+            vertical-align: top;
+        }
+
+        .author {
+            font-size: 25px;
+        }
+    }
+
+    .vinyl-rating {
+        @extend .vinyl-image;
+        padding-top: 3px;
+        padding-bottom: 5px;
+        text-align: center;
+    }
+
+    .vinyl-cart {
+        @extend .vinyl-info;
+        padding-top: 0;
+        padding-bottom: 10px;
+
+        .price {
+            font-size: 23px;
+            margin-right: 15px;
+            @media (max-width: $screen-xs-max) {
+                font-size: 16px;
+            }
+        }
+
+        .add-to-cart {
+            span {
+                display: inline-block;
+                -moz-box-shadow: 0px 0px 2px #888;
+                -webkit-box-shadow: 0px 0px 2px #888;
+                box-shadow: 0px 0px 2px #888;
+                background: white;
+                color: #555555;
+                padding: 10px;
+                @include border-radius(50px);
+                cursor: pointer;
+                font-size: 25px;
+
+                &:hover {
+                    color: #5cb85c;
+                }
+
+                @media (max-width: $screen-xs-max) {
+                    font-size: 15px;
+                }
+            }
+        }
+
+        .more {
+            font-size: 16px;
+            cursor: pointer;
+        }
+    }
+
+    a {
+        color: #222;
+    }
+}
