@@ -5,12 +5,9 @@
     "Artem Meshcheryakov <messteno@gmail.com>"
   ],
   "devDependencies": {
-    "brfs": "^1.2.0",
     "browserify": "^8.0.3",
     "browserify-ngannotate": "^0.5.0",
     "browserify-shim": "^3.8.2",
-    "csso": "^1.3.11",
-    "debowerify": "^1.2.0",
     "del": "~0.1.3",
     "event-stream": "^3.2.1",
     "filter": "^0.1.1",
@@ -26,17 +23,21 @@
     "gulp-concat": "^2.4.3",
     "gulp-csso": "^0.2.9",
     "gulp-faster-browserify": "^0.2.1",
+    "gulp-filesize": "0.0.6",
     "gulp-filter": "^2.0.0",
     "gulp-flatten": "0.0.4",
     "gulp-ignore": "^1.2.1",
     "gulp-jshint": "^1.9.0",
     "gulp-minify-css": "^0.3.11",
+    "gulp-minify-html": "^0.1.8",
     "gulp-modernizr": "0.0.0",
     "gulp-ng-annotate": "^0.4.3",
     "gulp-notify": "^2.1.0",
     "gulp-rename": "^1.2.0",
-    "gulp-ruby-sass": "^0.7.1",
+    "gulp-ruby-sass": "^1.0.0-alpha.3",
     "gulp-sass": "^1.2.4",
+    "gulp-size": "^1.2.0",
+    "gulp-sourcemaps": "^1.3.0",
     "gulp-streamify": "0.0.5",
     "gulp-uglify": "^1.0.2",
     "gulp-util": "^3.0.2",
@@ -48,21 +49,22 @@
     "watchify": "^2.2.1"
   },
   "browser": {
-      "jquery": "jquery/dist/jquery.js",
-      "owlcarousel": "owl-carousel2/dist/owl.carousel.js",
-      "angular": "angular/angular.js",
-      "angular-bootstrap": "angular-bootstrap/ui-bootstrap.js",
-      "angular-bootstrap-tpls": "angular-bootstrap/ui-bootstrap-tpls.js",
-      "angular-ui-router": "angular-ui-router/release/angular-ui-router.js",
-      "angular-route": "angular-route/angular-route.js"
+    "jquery": "jquery/dist/jquery.js",
+    "owlcarousel": "owl-carousel2/dist/owl.carousel.js",
+    "angular": "angular/angular.js",
+    "angular-bootstrap": "angular-bootstrap/ui-bootstrap.js",
+    "angular-bootstrap-tpls": "angular-bootstrap/ui-bootstrap-tpls.js",
+    "angular-ui-router": "angular-ui-router/release/angular-ui-router.js",
+    "angular-route": "angular-route/angular-route.js",
+    "angular-cookies": "angular-cookies/angular-cookies.js"
   },
   "browserify-shim": {
-      "jquery": "$",
-      "owlcarousel": {
-          "exports": "owlCarousel",
-          "depends": [
-              "jquery:$"
-          ]
-      }
+    "jquery": "$",
+    "owlcarousel": {
+      "exports": "owlCarousel",
+      "depends": [
+        "jquery:$"
+      ]
+    }
   }
 }

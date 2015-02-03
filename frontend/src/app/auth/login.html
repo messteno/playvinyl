@@ -1,0 +1,22 @@
+<div class="panel-heading">
+    <h2 class="panel-title">Вход на сайт</h2>
+</div>
+<div class="panel-body">
+    <form accept-charset="UTF-8" role="form" ng-submit="login(loginForm)" name="loginForm" novalidate>
+    <fieldset>
+        <div class="form-group">
+            <alert type="danger" ng-repeat="error in errors.username">{{error}}</alert>
+            <input name="username" class="form-control" placeholder="Логин" ng-model="model.username" type="text" required />
+        </div>
+        <div class="form-group">
+            <alert type="danger" ng-repeat="error in errors.password">{{error}}</alert>
+            <input name="password" class="form-control" placeholder="Пароль" ng-model="model.password" type="password" required />
+        </div>
+        <alert type="danger" ng-repeat="error in errors.non_field_errors">{{error}}</alert>
+        <alert ng-if="error" type="danger">{{error}}</alert>
+        <input class="btn btn-success" type="submit" value="Войти">
+        <input class="btn btn-default" type="button" ng-click="$close('register')" value="Регистрация">
+        <a href="" class="reset-pass" ng-click="$close('reset-pass')">Восстановить пароль</a>
+    </fieldset>
+    </form>
+</div>

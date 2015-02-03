@@ -1,6 +1,7 @@
 @import "app/variables.scss";
 @import "app/vendor.scss";
 @import "app/nav/nav.scss";
+@import "app/auth/auth.scss";
 @import "app/cart/widget.scss";
 @import "app/main/main.scss";
 @import "app/footer/footer.scss";
@@ -149,6 +150,14 @@ body {
     }
 
     border-color: $yellow !important;
+}
+
+.modal {
+    overflow-y: auto;
+}
+.modal-open {
+    overflow:auto;
+    overflow-x:hidden;
 }
 
 .main {

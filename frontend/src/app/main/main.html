@@ -1,5 +1,6 @@
-<div owl-carousel=""></div>
+<div owl-carousel="" class="teaser hidden-xs"></div>
 
+<h1>Каталог пластинок</h1>
 <div class="catalog">
     <pagination total-items="230"
                 ng-model="currentPage" max-size="7"
@@ -12,11 +13,11 @@
                 >
     </pagination>
     <div class="catalog-item container-md-height" ng-repeat="vinyl in vinyls">
-        <div class="row row-xs-height">
-            <div class="vinyl-image col-xs-4 col-sm-3 col-xs-height">
+        <div class="row row-sm-height">
+            <div class="vinyl-image col-xs-12 col-sm-3 col-sm-height">
                 <img class="cover img-responsive" src="static/img/vinyl.jpg" alt="">
             </div>
-            <div class="vinyl-info col-xs-8 col-sm-9 col-xs-height">
+            <div class="vinyl-info col-xs-12 col-sm-9 col-sm-height">
                 <table>
                     <tr class="vinyl-info-row">
                         <div class="author">
@@ -60,8 +61,8 @@
                 </table>
             </div>
         </div>
-        <div class="row row-xs-height">
-            <div class="vinyl-rating col-xs-4 col-sm-3 col-xs-height">
+        <div class="row row-sm-height">
+            <div class="vinyl-rating col-xs-12 col-sm-3 col-sm-height">
                 <div class="rating">
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>
@@ -70,7 +71,7 @@
                     <i class="fa fa-star-o"></i>
                 </div>
             </div>
-            <div class="vinyl-cart col-xs-8 col-sm-9 col-xs-height">
+            <div class="vinyl-cart col-xs-12 col-sm-9 col-sm-height">
                 <div class="more pull-left"><i class="fa fa-play"></i> прослушать</div>
                 <div class="add-to-cart pull-right">
                     <span class="fa fa-shopping-cart"></span>

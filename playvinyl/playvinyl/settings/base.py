@@ -3,13 +3,14 @@ This is your project's main settings file that can be committed to your
 repo. If you need to override a setting locally, use local.py
 """
 
-from sys import path
 import os
+from sys import path
 
 
 # Normally you should not import ANYTHING from Django directly
 # into your settings, but ImproperlyConfigured is an exception.
 from django.core.exceptions import ImproperlyConfigured
+
 
 def get_env_setting(setting):
     """ Get the environment setting or return exception """
@@ -46,13 +47,17 @@ DATABASES = {}
 
 TIME_ZONE = 'Europe/Moscow'
 
-LANGUAGE_CODE = 'ru-ru'
+LANGUAGE_CODE = 'ru-RU'
 
 USE_I18N = True
 
 USE_L10N = True
 
 USE_TZ = True
+
+LOCALE_PATHS = (
+    os.path.normpath(os.path.join(SITE_ROOT, 'locale')),
+)
 
 
 MEDIA_ROOT = os.path.normpath(os.path.join(SITE_ROOT, '..', 'media'))
@@ -88,6 +93,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.csrf',
     'django.core.context_processors.tz',
     'django.contrib.messages.context_processors.messages',
+    'django.core.context_processors.request',
 )
 
 TEMPLATE_LOADERS = (
@@ -121,10 +127,16 @@ DJANGO_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'grappelli',
     'django.contrib.admin',
 )
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 LOCAL_APPS = (
+    'article',
+    'store',
+    'api',
 )
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
@@ -157,9 +169,60 @@ WSGI_APPLICATION = '%s.wsgi.application' % SITE_NAME
 
 INTERNAL_IPS = ('127.0.0.1',)
 
+
+# COMPRESSOR SETTINGS
 INSTALLED_APPS += (
     'compressor',
 )
 
-COMPRESS_ROOT = os.path.normpath(os.path.join(SITE_ROOT, '..', 'frontend', 'dist'))
+COMPRESS_ROOT = os.path.normpath(os.path.join(SITE_ROOT, '..',
+                                              'frontend', 'dist'))
 COMPRESS_OUTPUT_DIR = ''
+
+
+# PEP8
+INSTALLED_APPS += (
+    'test_pep8',
+)
+
+TEST_PEP8_DIRS = [SITE_ROOT, ]
+TEST_PEP8_EXCLUDE = ['migrations', ]
+
+
+# ALLAUTH
+TEMPLATE_CONTEXT_PROCESSORS += (
+    'allauth.account.context_processors.account',
+    'allauth.socialaccount.context_processors.socialaccount',
+)
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+INSTALLED_APPS += (
+    'allauth',
+    'allauth.account',
+)
+
+ACCOUNT_EMAIL_VERIFICATION = None
+
+
+# REST FRAMEWORK
+INSTALLED_APPS += (
+    'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
+)
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        # 'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    )
+}

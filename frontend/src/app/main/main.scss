@@ -10,7 +10,7 @@
     padding: 0 15px;
     margin-bottom: 25px;
     text-align: left;
-    color: #222;
+    color: white;
 
     .vinyl-image {
         background-color: #ED7B56;
@@ -40,7 +40,9 @@
 
     .vinyl-cart {
         @extend .vinyl-info;
-        padding-top: 0;
+        @media (min-width: $screen-sm-min) {
+            padding-top: 0;
+        }
         padding-bottom: 10px;
 
         .price {
@@ -81,6 +83,6 @@
     }
 
     a {
-        color: #222;
+        color: white;
     }
 }

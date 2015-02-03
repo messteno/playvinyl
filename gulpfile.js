@@ -6,6 +6,7 @@ var gulp = require('gulp'),
     ngAnnotate = require('gulp-ng-annotate'),
     source = require('vinyl-source-stream'),
     sass = require('gulp-ruby-sass'),
+    sourcemaps = require('gulp-sourcemaps'),
     autoprefix = require('gulp-autoprefixer'),
     concat = require('gulp-concat'),
     ignore = require('gulp-ignore'),
@@ -17,9 +18,10 @@ var gulp = require('gulp'),
     jshint = require('gulp-jshint'),
     stylish = require('jshint-stylish'),
     uglify = require('gulp-uglify'),
+    size = require('gulp-size'),
     mainBowerFiles = require('main-bower-files'),
-    csso = require('gulp-csso'),
     minifyCss = require('gulp-minify-css'),
+    minifyHtml = require('gulp-minify-html'),
     eventStream = require('event-stream'),
     del = require('del'),
     streamify = require('gulp-streamify'),
@@ -35,24 +37,23 @@ var config = {
 };
 
 gulp.task('sass', function() {
-    return gulp.src(config.srcDotPath + '/app/app.scss')
-        .pipe(
-            sass({
-                style: 'compressed',
-                loadPath: [
-                    config.srcDotPath,
-                    config.bowerDir + '/bootstrap-sass-official/assets/stylesheets',
-                    config.bowerDir + '/fontawesome/scss',
-                    config.bowerDir + '/icomoon-sass/assets/scss',
-                ],
-                'sourcemap=none': true,
-                precision: 2
-            })
-            .on("error", notify.onError(function (error) {
-                return "Error: " + error.message;
-            }))
-        )
-        .pipe(autoprefix())
+    return sass(config.srcDotPath + '/app/app.scss', {
+            style: prod ? 'compressed' : 'nested',
+            loadPath: [
+                config.srcDotPath,
+                config.bowerDir + '/bootstrap-sass-official/assets/stylesheets',
+                config.bowerDir + '/fontawesome/scss',
+                config.bowerDir + '/icomoon-sass/assets/scss',
+            ],
+            sourcemap: prod,
+            precision: 2
+        })
+        .on("error", notify.onError(function (error) {
+            return "Error: " + error.message;
+        }))
+        .pipe(autoprefix({
+            browsers: ['last 2 version', 'ios 6', 'android 4']
+        }))
         .pipe(gulp.dest(config.tmpPath + '/css/'));
 });
 
@@ -68,7 +69,7 @@ gulp.task('css', ['sass'], function () {
             .pipe(concat('app.css'));
 
     return eventStream.concat(bowerCss, appCss)
-        .pipe(minifyCss())
+        .pipe(prod ? minifyCss() : gutil.noop())
         .pipe(concat(config.distPath + '/css/playvinyl.css'))
         .pipe(gulp.dest('./'));
 });
@@ -76,7 +77,18 @@ gulp.task('css', ['sass'], function () {
 gulp.task('lint', function () {
     return gulp.src(config.srcDotPath + '/**/*.js')
         .pipe(jshint())
-        .pipe(jshint.reporter('jshint-stylish'));
+        .pipe(jshint.reporter('jshint-stylish'))
+        .pipe(notify(function (file) {
+            if (file.jshint.success) {
+                return false;
+            }
+            var errors = file.jshint.results.map(function (data) {
+                if (data.error) {
+                    return "(" + data.error.line + ':' + data.error.character + ') ' + data.error.reason;
+                }
+            }).join("\n");
+            return file.relative + " (" + file.jshint.results.length + " errors)\n" + errors;
+        }));
 });
 
 var watching = false;
@@ -108,11 +120,12 @@ gulp.task('js', ['lint'], function () {
                 console.log(err.message);
                 this.emit('end');
             });
-        gutil.log('Started  \'' + gutil.colors.green('browserify') + '\'');
+        gutil.log('Starting \'' + gutil.colors.green('browserify') + '\'...');
         return stream
             .pipe(source('/app/app.js'))
             .pipe(streamify(ngAnnotate()))
             .pipe(streamify(prod ? uglify() : gutil.noop()))
+            .pipe(streamify(size()))
             .pipe(rename('playvinyl.js'))
             .pipe(gulp.dest(config.distPath + '/js/'))
             .on('finish', function() {
@@ -140,17 +153,28 @@ gulp.task('fonts', ['fonts:bower', 'fonts:my']);
 gulp.task('images', function () {
     return gulp.src(config.srcDotPath + '/img/**/*')
         .pipe(imagemin({
-            optimizationLevel: 3,
+            optimizationLevel: 5,
             progressive: true,
             interlaced: true
         }))
         .pipe(gulp.dest(config.distPath + '/img/'));
 });
 
+gulp.task('html', function () {
+    return gulp.src([
+            config.srcDotPath + '/**/*.html'
+        ])
+        .pipe(minifyHtml({
+            empty: true,
+            spare: true,
+            quotes: true
+        }))
+        .pipe(gulp.dest(config.distPath));
+});
+
 gulp.task('misc', function () {
     return gulp.src([
             config.srcDotPath + '/**/*.ico',
-            config.srcDotPath + '/**/*.html'
         ])
         .pipe(gulp.dest(config.distPath));
 });
@@ -158,11 +182,15 @@ gulp.task('misc', function () {
 gulp.task('watch', ['enable-watch-mode', 'default'], function() {
     gulp.watch(config.srcPath + '/app/**/*.scss', ['css']);
     gulp.watch(config.srcPath + '/app/**/*.js', ['lint']);
-    gulp.watch(config.srcPath + '/**/*.html', ['misc']);
+    gulp.watch(config.srcPath + '/app/**/*.html', ['html']);
     gulp.watch(config.srcPath + '/**/*.ico', ['misc']);
     gulp.watch(config.srcPath + '/img/**/*.{png,jpg}', ['images']);
     gulp.watch(config.srcPath + '/fonts/**/*', ['fonts']);
 });
+
+gulp.task('test', [
+    'lint',
+]);
 
 gulp.task('clean', function (done) {
     del([config.distPath, config.tmpPath], done);
@@ -173,5 +201,6 @@ gulp.task('default', [
     'js',
     'fonts',
     'images',
+    'html',
     'misc',
 ]);

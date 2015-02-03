@@ -26,6 +26,16 @@
         }
     }
 
+    .cart-item {
+        margin: 5px 0;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #888;
+        
+        .quantity {
+            padding: 0 5px;
+        }
+    }
+
     .small-cart-item {
         width: 100%;
         max-width: 180px;
