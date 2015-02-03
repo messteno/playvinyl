@@ -49,6 +49,11 @@ TIME_ZONE = 'Europe/Moscow'
 
 LANGUAGE_CODE = 'ru-RU'
 
+LANGUAGES = (
+    ('ru', 'Russian'),
+    # ('en', 'English'),
+)
+
 USE_I18N = True
 
 USE_L10N = True
@@ -56,8 +61,10 @@ USE_L10N = True
 USE_TZ = True
 
 LOCALE_PATHS = (
-    os.path.normpath(os.path.join(SITE_ROOT, 'locale')),
+    os.path.normpath(os.path.join(SITE_ROOT, 'playvinyl', 'locale')),
 )
+
+DEFAULT_FROM_EMAIL = 'playvinyl@playvinyl.ru'
 
 
 MEDIA_ROOT = os.path.normpath(os.path.join(SITE_ROOT, '..', 'media'))
@@ -102,7 +109,7 @@ TEMPLATE_LOADERS = (
 )
 
 TEMPLATE_DIRS = (
-    os.path.normpath(os.path.join(SITE_ROOT, 'templates')),
+    os.path.normpath(os.path.join(SITE_ROOT, 'playvinyl', 'templates')),
 )
 
 MIDDLEWARE_CLASSES = (

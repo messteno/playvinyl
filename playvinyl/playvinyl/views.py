@@ -10,6 +10,9 @@ class FixedPasswordReset(PasswordReset):
     serializer_class = FixedPasswordResetSerializer
     permission_classes = (AllowAny,)
 
+    def post(self, request):
+        print(request.LANGUAGE_CODE)
+        return super(FixedPasswordReset, self).post(request)
 
 class FixedPasswordResetConfirm(PasswordResetConfirm):
     serializer_class = FixedPasswordResetConfirmSerializer

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-03 16:01+0300\n"
+"POT-Creation-Date: 2015-02-04 02:18+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,30 +19,45 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: templates/index.html:20
+#: playvinyl/serializers.py:15
+msgid "There is no user with such email"
+msgstr "Пользователь с указанным email адресом отсутствует"
+
+#: playvinyl/serializers.py:16
+msgid "Error"
+msgstr ""
+
+#: playvinyl/serializers.py:40
+msgid "Invalid uid"
+msgstr "Некорректный идентификатор пользователя"
+
+#: playvinyl/serializers.py:41
+msgid "Invalid token"
+msgstr "Некорректный токен"
+
+#: playvinyl/templates/index.html:20
 msgid "Playvinyl"
 msgstr ""
 
-#: templates/registration/password_reset_email.html:2
-#, python-format
+#: playvinyl/templates/registration/password_reset_email.html:2
 msgid ""
 "You're receiving this email because you requested a password reset for your "
 "user account at %(site_name)s."
 msgstr ""
 
-#: templates/registration/password_reset_email.html:4
+#: playvinyl/templates/registration/password_reset_email.html:4
 msgid "Please go to the following page and choose a new password:"
 msgstr ""
 
-#: templates/registration/password_reset_email.html:8
+#: playvinyl/templates/registration/password_reset_email.html:8
 msgid "Your username, in case you've forgotten:"
 msgstr ""
 
-#: templates/registration/password_reset_email.html:10
+#: playvinyl/templates/registration/password_reset_email.html:10
 msgid "Thanks for using our site!"
 msgstr ""
 
-#: templates/registration/password_reset_email.html:12
+#: playvinyl/templates/registration/password_reset_email.html:12
 #, python-format
 msgid "The %(site_name)s team"
 msgstr ""
