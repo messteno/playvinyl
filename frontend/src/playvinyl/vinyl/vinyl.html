@@ -1,0 +1,85 @@
+<div class="vinyl container-md-height">
+    <div class="row row-sm-height">
+        <div class="vinyl-image col-xs-12 col-sm-3 col-sm-height">
+            <img class="cover img-responsive" ng-src="{{ vinyl.image }}" alt="">
+        </div>
+        <div class="vinyl-info col-xs-12 col-sm-9 col-sm-height">
+            <table>
+                <tr class="vinyl-info-row">
+                    <div class="name">
+                        <a href="" ui-sref="vinyl({ slug: vinyl.slug })">
+                            {{ vinyl.name }}
+                        </a>
+                    </div>
+                </tr>
+                <tr class="vinyl-info-row">
+                    <td>
+                        <strong>Автор:</strong>
+                    </td>
+                    <td>
+                        <span ng-repeat="author in vinyl.authors">
+                            <a ui-sref="vinyl-author({slug: author.slug})">{{ author.name }}</a>
+                            {{$last ? '' : ', '}}
+                        </span>
+                    </td>
+                </tr>
+                <tr class="vinyl-info-row">
+                    <td>
+                        <strong>Дата релиза:</strong>
+                    </td>
+                    <td>
+                        {{ vinyl.release_date }}
+                    </td>
+                </tr>
+                <tr class="vinyl-info-row">
+                    <td>
+                        <strong>Стиль:</strong>
+                    </td>
+                    <td>
+                        <span ng-repeat="style in vinyl.styles">{{ style.name }}{{$last ? '' : ', '}}</span>
+                    </td>
+                </tr>
+                <tr class="vinyl-info-row">
+                    <td>
+                        <strong>Лейбл:</strong>
+                    </td>
+                    <td>
+                        <a ui-sref="vinyl-label({slug: vinyl.label.slug})">{{ vinyl.label.name }}</a>
+                    </td>
+                </tr>
+                <tr class="vinyl-info-row">
+                    <td>
+                        <strong>Номер каталога:</strong>
+                    </td>
+                    <td>
+                        {{ vinyl.catalog_number }}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row row-sm-height">
+        <div class="vinyl-rating col-xs-12 col-sm-3 col-sm-height">
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+            </div>
+        </div>
+        <div class="vinyl-cart col-xs-12 col-sm-9 col-sm-height">
+            <div class="clearfix">
+                <!--<div class="more pull-left"><i class="fa fa-play"></i> прослушать</div>-->
+                <div class="add-to-cart pull-right">
+                    <span class="fa fa-shopping-cart"></span>
+                </div>
+                <div class="price pull-right">
+                    {{ vinyl.price | number }} <span class="fa fa-rub"></span>
+                </div>
+            </div>
+            <audio-player tracks="vinyl.tracks" vinyl="vinyl.id" ng-if="vinyl.tracks.length > 0">
+            </audio-player>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,126 @@
+.player {
+    margin-top: 10px;
+
+    .interface {
+        position: relative;
+        height: 30px;
+        box-shadow: 0px 1px 1px rgba(0,0,0,0.5);
+        border-radius: 3px;
+        background-color: #222222;
+        background-repeat: repeat-x;
+        background-image: linear-gradient(#3a3b3c,#222222);
+    }
+
+    .play-toggle {
+        position: absolute;
+        z-index: 1;
+
+        .btn {
+            color: #fefefe;
+
+            &:hover {
+                color: yellow;
+           }
+       }
+    }
+
+    .volume {
+        position: absolute;
+        width: 90px;
+        right: 0;
+
+        .btn {
+            color: #fefefe;
+
+            &:hover {
+                color: yellow;
+           }
+       }
+    }
+
+    .volumebar {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 45px;
+        height: 7px;
+        margin: 12px;
+        cursor: pointer;
+    }
+
+    .progressbar {
+        position: absolute;
+        padding: 0 90px 0 45px;
+        width: 100%;
+        height: 7px;
+        margin-top: 12px;
+        margin-bottom: 12px;
+        cursor: pointer;
+    }
+
+    .seek-bar {
+        width: 100%;
+        height: 5px;
+        position: relative;
+        z-index: 999;
+        background: #464849;
+        border-radius: 1px;
+
+        &:before {
+            content: " ";
+            display: block;
+            background: transparent;
+            border: 1px solid;
+            border-color: #212424 #262929 #262929;
+            height: 5px;
+            width: 100%;
+            position: relative;
+            top: -1px;
+            left: -1px;
+            box-shadow: 0 1px 1px rgba(255,255,255,0.1);
+            border-radius: 1px;
+            box-sizing: content-box;
+        }
+
+        .in-bar {
+            box-shadow: inset 0 1px 2px rgba(255,255,255,0.3);
+            background-size: 7px 7px;
+            background-color: #fcc500;
+            background-repeat: repeat-x;
+            background-image: linear-gradient(-45deg,rgba(255,255,255,0.3) 25%,transparent 25%,transparent 50%,rgba(255,255,255,0.3) 50%,rgba(255,255,255,0.3) 75%,transparent 75%,transparent);
+            position: absolute;
+            top: 0;
+            left: 0;
+            animation: progress 0.75s linear infinite;
+            border-radius: 1px;
+            height: 5px;
+        }
+    }
+
+    .playlist {
+        width: 95%;
+        margin: 0 auto;
+        background-color: #3a3b3c;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+        border-radius: 0 0 3px 3px;
+
+        .track {
+            width: 100%;
+            padding: 5px 10px;
+            border-top: 1px solid #3d3f40;
+            border-bottom: 1px solid #323334;
+            box-sizing: border-box;
+            cursor: pointer;
+            color: #d2d6db;
+
+            &.active {
+                color: white;
+                font-weight: bold;
+            }
+
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+    }
+}

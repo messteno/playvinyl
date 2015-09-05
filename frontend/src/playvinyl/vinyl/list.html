@@ -1,0 +1,30 @@
+<h1>{{ title  }}</h1>
+<div class="store">
+    <div>
+        <pagination total-items="1"
+                    ng-model="currentPage"
+                    max-size="7"
+                    class="pagination-sm"
+                    boundary-links="true"
+                    previous-text="<"
+                    next-text=">"
+                    first-text="<<"
+                    last-text=">>"
+                    >
+        </pagination>
+    </div>
+    <div class="store-item" store-vinyl-item vinyl="vinyl" ng-repeat="vinyl in vinyls"></div>
+    <div>
+        <pagination total-items="1"
+                    ng-model="currentPage"
+                    max-size="7"
+                    class="pagination-sm pagination-bottom"
+                    boundary-links="true"
+                    previous-text="<"
+                    next-text=">"
+                    first-text="<<"
+                    last-text=">>"
+                    >
+        </pagination>
+    </div>
+</div>

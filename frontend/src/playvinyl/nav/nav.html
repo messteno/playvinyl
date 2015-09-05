@@ -1,0 +1,111 @@
+<nav class="navbar navbar-default navbar-inverse" role="navigation">
+<div class="navbar-header">
+    <a class="navbar-brand" ui-sref="home">Playvinyl.ru</a>
+</div>
+
+<button type="button" class="navbar-toggle pull-left collapsed" ng-click="isMenuCollapsed = !isMenuCollapsed" ng-init="isMenuCollapsed=true">
+    <span class="sr-only">Toggle navigation</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+</button>
+
+<ul class="nav navbar-nav navbar-right">
+    <li><a href="" ui-sref="home"><i class="fa fa-dot-circle-o fa-2x"></i></a></li>
+    <li><a href=""><i class="fa fa-user fa-2x"></i></a></li>
+    <li><a href=""><i class="fa fa-shopping-cart fa-2x"></i></a></li>
+    <li ng-hide="authenticated">
+        <a href="" ng-click="login()"><i class="fa fa-key fa-2x"></i></a>
+    </li>
+    <li ng-show="authenticated">
+        <a href="" ng-click="logout()"><i class="fa fa-sign-out fa-2x"></i></a>
+    </li>
+</ul>
+
+<div class="navbar-default navbar-inverse sidebar">
+    <div class="sidebar-nav collapse navbar-collapse" collapse="isMenuCollapsed">
+        <ul class="nav" id="side-menu">
+            <li class="sidebar-search">
+                <div class="input-group custom-search-form">
+                    <input type="text" class="form-control" placeholder="Поиск">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">
+                            <span class="fa fa-search"></span>
+                        </button>
+                    </span>
+                </div>
+            </li>
+            <li>
+                <a href="#" ng-click="isStylesCollapsed = !isStylesCollapsed"
+                            ng-init="isStylesCollapsed=true"
+                            ng-class="{active: !isStylesCollapsed}"
+                            class="menu-title">
+                    Поиск по стилям
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level" collapse="isStylesCollapsed">
+                    <li>
+                        <a href="flot.html">
+                            Acid/Acid Techno
+                        </a>
+                    </li>
+                    <li>
+                        <a href="morris.html">
+                            Disco/Space Disco
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" ng-click="navMenu.isAuthorsCollapsed = !navMenu.isAuthorsCollapsed"
+                            ng-init="navMenu.isAuthorsCollapsed=true"
+                            ng-class="{active: !navMenu.isAuthorsCollapsed}"
+                            class="menu-title">
+                    Каталог исполнителей
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level" collapse="navMenu.isAuthorsCollapsed">
+                    <li ng-repeat="author in vinylAuthors">
+                        <a ui-sref="vinyl-author({slug: author.slug})" ui-sref-active-eq="active">
+                            {{ author.name }}
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" ng-click="navMenu.isLabelsCollapsed = !navMenu.isLabelsCollapsed"
+                            ng-class="{active: !navMenu.isLabelsCollapsed}"
+                            class="menu-title">
+                    Каталог лейблов
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level" collapse="navMenu.isLabelsCollapsed">
+                    <li ng-repeat="label in vinylLabels">
+                        <a ui-sref="vinyl-label({slug: label.slug})" ui-sref-active-eq="active">
+                            {{ label.name }}
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="about-us icon-link">
+                <a ui-sref="about" ui-sref-active-eq="active">
+                    <span class="fa fa-question-circle"></span>
+                    О нас
+                </a>
+            </li>
+            <li class="pay icon-link">
+                <a ui-sref="payment" ui-sref-active-eq="active">
+                    <span class="fa fa-credit-card"></span>
+                    Оплата
+                </a>
+            </li>
+            <li class="delivery icon-link">
+                <a ui-sref="shipping" ui-sref-active-eq="active">
+                    <span class="fa fa-car"></span>
+                    Доставка
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+</nav>

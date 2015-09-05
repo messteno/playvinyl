@@ -1,0 +1,29 @@
+<div class="player">
+    <div class="interface">
+        <div class="play-toggle">
+            <div class="btn btn-sm" ng-click="playToggle()">
+                <span class="fa fa-fw" ng-class="{'fa-play': !isPlaying(), 'fa-pause': isPlaying()}"></span>
+            </div>
+        </div>
+        <div class="progressbar">
+            <div class="seek-bar" audio-player-seek>
+                <div class="in-bar" ng-style="{ width: ( progress + '%') }"></div>
+            </div>
+        </div>
+        <div class="volume">
+            <div class="btn btn-sm" mute-music>
+                <span class="fa fa-fw" ng-class="{'fa-volume-up': !mute, 'fa-volume-off': mute}"></span>
+            </div>
+            <div class="volumebar">
+                <div class="seek-bar" volume-bar>
+                    <div class="in-bar" ng-style="{ width: ( volume + '%') }"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="playlist">
+        <div class="track" ng-class="{active: currentPlaying.id === track.id}" ng-click="playTrack(track)" ng-repeat="track in tracks">
+            {{ track.name }}
+        </div>
+    </div>
+</div>

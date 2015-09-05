@@ -1,0 +1,117 @@
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+    border-bottom: 1px solid #BF2205;
+}
+
+.nav-search-form {
+    @media (max-width: $screen-xs-max) {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+}
+
+.navbar-toggle {
+    margin-top: 4px !important;
+    margin-left: 15px;
+}
+
+ul.navbar-nav {
+    margin: 0;
+}
+
+.navbar-nav li {
+    float: left !important;
+}
+
+.navbar-nav i {
+    color: white;
+
+    @media (min-width: $screen-sm-min) {
+        margin: 0 15px;
+    }
+
+    &:hover {
+        color: #888888;
+    }
+}
+
+.navbar-form {
+    @media (min-width: $screen-sm-min) {
+        margin: 12px 0;
+    }
+}
+
+.sidebar {
+    @media (min-width: $screen-sm-min) {
+        z-index: 1;
+        position: absolute;
+        width: 250px;
+        margin-top: 80px;
+        min-height: 100%;
+        border: 1px solid #090909;
+        border-left: 0;
+    }
+
+    .sidebar-search {
+        padding: 15px;
+
+        input[type="text"] {
+            height: auto;
+        }
+    }
+
+    .sidebar-nav.navbar-collapse {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    ul {
+        li.icon-link span.fa {
+            width: 20px;
+            margin-right: 10px;
+        }
+
+        li.about-us {
+            margin-top: 20px !important;
+        }
+
+        li.delivery {
+            margin-bottom: 20px !important;
+        }
+
+        li a {
+            color: #9d9d9d;
+        }
+
+        li a:hover,
+        li a:focus,
+        li a.active {
+            background-color: #000 !important;
+            color: #eee;
+        }
+
+        li a.menu-title:hover,
+        li a.menu-title:focus,
+        li a.menu-title.active {
+            background-color: inherit !important;
+        }
+    }
+
+    .nav-second-level li a {
+        padding-left: 37px;
+    }
+
+    .arrow {
+        float: right;
+    }
+
+    .fa.arrow:before {
+        content: "\f104";
+    }
+
+    li a.active .fa.arrow:before {
+        content: "\f107";
+    }
+}
+
