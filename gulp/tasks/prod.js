@@ -7,7 +7,6 @@ gulp.task('prod', ['clean'], function(cb) {
 
     cb = cb || function() {};
     global.isProd = true;
-    runSequence(['sass', 'css', 'images', 'fonts', 'html',
-                 'browserify', /* 'gettext-compile' */], 'gzip', cb);
+    runSequence(['sass', 'css', 'images', 'fonts', 'html', 'browserify'], 'gzip', cb);
 
 });

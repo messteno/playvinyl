@@ -1,5 +1,8 @@
 'use strict';
 
+/**
+ * @ngInject
+ */
 var app = angular.module('playvinyl');
 app.controller('ResetPasswordCtrl', function ($scope, $modalInstance, djangoAuth, Validate) {
     $scope.model = {'email':''};
