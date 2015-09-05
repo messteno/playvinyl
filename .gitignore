@@ -12,6 +12,6 @@ bower_components/
 frontend/tmp/
 frontend/dist/
 media/
-static/
+./static/
 logs/
 */__pycache__

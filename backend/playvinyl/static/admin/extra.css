@@ -1,0 +1,26 @@
+.autocomplete-light-widget .deck>span {
+    height: 34px;
+    padding: 5px !important;
+    background-color: #5bc0de;
+    border: 1px solid #46b8da;
+    color: #fff;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.autocomplete-light-widget .deck>span:hover {
+    background-color: #31b0d5;
+    border-color: #269abc;
+}
+
+.autocomplete-light-widget .deck>span .remove {
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.autocomplete-light-widget.label {
+    padding: 0;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.5;
+}
