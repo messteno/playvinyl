@@ -6,6 +6,7 @@
 *.swp
 *.swo
 .sass-cache/
+backend/playvinyl/settings/local.py
 node_modules/
 bower_components/
 frontend/tmp/
