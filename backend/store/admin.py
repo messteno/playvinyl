@@ -4,7 +4,6 @@ from django.db import models
 from django.contrib.admin.widgets import AdminFileWidget
 from django.utils.safestring import mark_safe
 from django.contrib import admin
-from datetimewidget.widgets import DateWidget
 from store.models import Vinyl, VinylAuthor, VinylLabel, VinylStyle, VinylCatalog, VinylTrack
 
 
@@ -71,7 +70,7 @@ class VinylAuthorForm(autocomplete_light.ModelForm):
             'styles': autocomplete_light.widgets.MultipleChoiceWidget('VinylStyleAutoComplete',
                 widget_attrs={'data-widget-bootstrap': 'vinyl-styles-widget'}
             ),
-            'release_date': DateWidget(usel10n=True, bootstrap_version=3),
+            # 'release_date': DateWidget(usel10n=True, bootstrap_version=3),
             'image' : AdminImageWidget,
         }
 

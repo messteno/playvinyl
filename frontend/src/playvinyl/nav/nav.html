@@ -36,22 +36,17 @@
                 </div>
             </li>
             <li>
-                <a href="#" ng-click="isStylesCollapsed = !isStylesCollapsed"
-                            ng-init="isStylesCollapsed=true"
-                            ng-class="{active: !isStylesCollapsed}"
+                <a href="#" ng-click="navMenu.isStylesCollapsed = !navMenu.isStylesCollapsed"
+                            ng-init="navMenu.isStylesCollapsed=true"
+                            ng-class="{active: !navMenu.isStylesCollapsed}"
                             class="menu-title">
                     Поиск по стилям
                     <span class="fa arrow"></span>
                 </a>
-                <ul class="nav nav-second-level" collapse="isStylesCollapsed">
-                    <li>
-                        <a href="flot.html">
-                            Acid/Acid Techno
-                        </a>
-                    </li>
-                    <li>
-                        <a href="morris.html">
-                            Disco/Space Disco
+                <ul class="nav nav-second-level" collapse="navMenu.isStylesCollapsed">
+                    <li ng-repeat="catalog in vinylCatalogs">
+                        <a ui-sref="vinyl-catalog({slug: catalog.slug})" ui-sref-active-eq="active">
+                            {{ catalog.name }}
                         </a>
                     </li>
                 </ul>

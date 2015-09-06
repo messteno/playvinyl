@@ -50,6 +50,11 @@ function Routes($httpProvider, $stateProvider, $urlRouterProvider, $locationProv
             templateUrl: '/static/html/vinyl/list.html',
             controller: 'VinylLabelController',
         })
+        .state('vinyl-catalog', {
+            url: '/style/{slug}',
+            templateUrl: '/static/html/vinyl/list.html',
+            controller: 'VinylCatalogController',
+        })
         .state('404', {
             url: '/404',
             template: '404 error',

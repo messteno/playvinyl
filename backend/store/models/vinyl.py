@@ -75,7 +75,7 @@ class Vinyl(BaseProduct):
     label = models.ForeignKey(VinylLabel, verbose_name='лейбл')
     styles = models.ManyToManyField(VinylStyle, verbose_name='стили')
     catalog = models.ForeignKey(VinylCatalog, verbose_name='каталог')
-    image = models.ImageField(upload_to=get_vinyl_image_path, blank=True, null=True, verbose_name='изоюражение')
+    image = models.ImageField(upload_to=get_vinyl_image_path, blank=True, null=True, verbose_name='изображение')
     release_date = models.DateField(verbose_name='дата релиза')
     description = models.TextField(blank=True, null=True, verbose_name='описание')
     catalog_number = models.CharField(max_length=64, blank=True, null=True, verbose_name='номер каталога')

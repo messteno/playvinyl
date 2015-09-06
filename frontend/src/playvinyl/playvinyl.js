@@ -7,7 +7,7 @@ require('angular-ui-router');
 require('angular-route');
 require('angular-cookies');
 require('angular-seo');
-require('angular-django-rest-resource');
+require('angular-resource');
 require('angular-soundmanager2');
 
 window.$ = window.jQuery = require('jquery');
@@ -18,15 +18,18 @@ var requires = [
     'ui.router',
     'ngRoute',
     'ngCookies',
+    'ngResource',
     'ng',
     'seo',
-    'djangoRESTResources',
     'angularSoundManager',
 ];
 
 var app = angular.module('playvinyl', requires);
 app
 .config(require('./routes'))
+.config(['$resourceProvider', function($resourceProvider) {
+  $resourceProvider.defaults.stripTrailingSlashes = false;
+}])
 .run(function($state, $rootScope, $modalStack, $modal, djangoAuth) {
     //var publicStates = ['home', 'reset-password', 'about', ];
     var authStates = [];
@@ -75,7 +78,8 @@ require('./request');
 /**
  * @ngInject
  */
-app.controller('IndexCtrl', function($scope, $state, $modal, $timeout, $location, djangoAuth, VinylAuthors, VinylLabels) {
+app.controller('IndexCtrl', function($scope, $state, $modal, $timeout, $location,
+                                     djangoAuth, VinylAuthors, VinylLabels, VinylCatalogs) {
     $scope.authenticated = false;
     $scope.year = new Date().getFullYear();
 
@@ -195,6 +199,7 @@ app.controller('IndexCtrl', function($scope, $state, $modal, $timeout, $location
 
     $scope.vinylAuthors = VinylAuthors.query();
     $scope.vinylLabels = VinylLabels.query();
+    $scope.vinylCatalogs = VinylCatalogs.query();
     $scope.navMenu = {
         'isAuthorsCollapsed': true,
         'isLabelsCollapsed': true,

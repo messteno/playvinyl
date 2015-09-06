@@ -1,8 +1,10 @@
-<h1>{{ title  }}</h1>
+<h1>{{ listTitle  }}</h1>
 <div class="store">
-    <div>
-        <pagination total-items="1"
-                    ng-model="currentPage"
+    <div ng-if="vinylList.pages > 1">
+        <pagination total-items="vinylList.count"
+                    ng-model="vinylList.page"
+                    ng-change="vinylList.load()"
+                    items-per-page="vinylList.pageSize"
                     max-size="7"
                     class="pagination-sm"
                     boundary-links="true"
@@ -13,12 +15,14 @@
                     >
         </pagination>
     </div>
-    <div class="store-item" store-vinyl-item vinyl="vinyl" ng-repeat="vinyl in vinyls"></div>
-    <div>
-        <pagination total-items="1"
-                    ng-model="currentPage"
+    <div class="store-item" store-vinyl-item vinyl="vinyl" ng-repeat="vinyl in vinylList.items"></div>
+    <div ng-if="vinylList.pages > 1">
+        <pagination total-items="vinylList.count"
+                    ng-model="vinylList.page"
+                    ng-change="vinylList.load()"
+                    items-per-page="2"
                     max-size="7"
-                    class="pagination-sm pagination-bottom"
+                    class="pagination-sm"
                     boundary-links="true"
                     previous-text="<"
                     next-text=">"

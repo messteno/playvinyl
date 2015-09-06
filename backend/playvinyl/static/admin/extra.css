@@ -6,6 +6,7 @@
     color: #fff;
     border-radius: 4px;
     margin-right: 10px;
+    box-sizing: border-box;
 }
 
 .autocomplete-light-widget .deck>span:hover {

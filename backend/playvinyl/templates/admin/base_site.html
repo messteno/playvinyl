@@ -4,6 +4,7 @@
 
 {% block extrahead %}
     {{ block.super }}
+    <script type="text/javascript" src="{% static 'jquery/dist/jquery.min.js' %}"></script>
     {% include 'autocomplete_light/static.html' %}
     <script type="text/javascript" src="{% static 'admin/vinyl_author_widget.js' %}"></script>
     <link rel="stylesheet" href="{% static 'admin/extra.css' %}" />

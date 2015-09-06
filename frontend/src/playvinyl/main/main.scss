@@ -54,6 +54,15 @@
         padding-top: 3px;
         padding-bottom: 5px;
         text-align: center;
+
+        span {
+            outline: 0;
+
+            i {
+                padding: 0 2px;
+                cursor: pointer;
+            }
+        }
     }
 
     .vinyl-cart {

@@ -5,10 +5,7 @@
  */
 var app = angular.module('playvinyl');
 app
-.controller('MainCtrl', function ($scope, Vinyl) {
-    $scope.vinyls = Vinyl.query(function() {
-        $scope.htmlReady();
-    });
+.controller('MainCtrl', function () {
 })
 .directive('owlCarousel', function () {
     return {

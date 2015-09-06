@@ -60,12 +60,15 @@
     </div>
     <div class="row row-sm-height">
         <div class="vinyl-rating col-xs-12 col-sm-3 col-sm-height">
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-o"></i>
+            <!--<div class="rating">-->
+                <!--<i class="fa fa-star"></i>-->
+                <!--<i class="fa fa-star"></i>-->
+                <!--<i class="fa fa-star"></i>-->
+                <!--<i class="fa fa-star"></i>-->
+                <!--<i class="fa fa-star-o"></i>-->
+            <!--</div>-->
+            <div ng-init="rating = 4" class="rating">
+                <rating ng-model="rating" max="5" state-on="'fa fa-star'" state-off="'fa fa-star-o'"></rating>
             </div>
         </div>
         <div class="vinyl-cart col-xs-12 col-sm-9 col-sm-height">
