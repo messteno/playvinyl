@@ -8,8 +8,6 @@ from api.views import ProfileView
 urlpatterns = patterns(
     'api.views',
 
-    url(r'^autocomplete/', include('autocomplete_light.urls')),
-
     url(r'^rest-auth/password/reset/$', FixedPasswordReset.as_view()),
     url(r'^rest-auth/password/reset/confirm/$',
         FixedPasswordResetConfirm.as_view()),

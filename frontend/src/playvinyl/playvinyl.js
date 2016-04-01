@@ -2,9 +2,9 @@
 
 require('angular');
 require('angular-bootstrap');
-require('angular-bootstrap-tpls');
 require('angular-ui-router');
 require('angular-route');
+require('angular-animate');
 require('angular-cookies');
 require('angular-seo');
 require('angular-resource');
@@ -19,6 +19,7 @@ var requires = [
     'ngRoute',
     'ngCookies',
     'ngResource',
+    'ngAnimate',
     'ng',
     'seo',
     'angularSoundManager',
@@ -30,14 +31,14 @@ app
 .config(['$resourceProvider', function($resourceProvider) {
   $resourceProvider.defaults.stripTrailingSlashes = false;
 }])
-.run(function($state, $rootScope, $modalStack, $modal, djangoAuth) {
+.run(function($state, $rootScope, $uibModal, djangoAuth) {
     //var publicStates = ['home', 'reset-password', 'about', ];
     var authStates = [];
     var authenticationCheck = true;
     var recheckAuthOnPrivateRequest = true;
 
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams) {
-        $modalStack.dismissAll();
+        //$uibModalStack.dismissAll();
 
         if (authStates.indexOf(toState.name) === -1) {
             return;
@@ -78,7 +79,7 @@ require('./request');
 /**
  * @ngInject
  */
-app.controller('IndexCtrl', function($scope, $state, $modal, $timeout, $location,
+app.controller('IndexCtrl', function($scope, $state, $uibModal, $timeout, $location,
                                      djangoAuth, VinylAuthors, VinylLabels, VinylCatalogs) {
     $scope.authenticated = false;
     $scope.year = new Date().getFullYear();
@@ -113,7 +114,7 @@ app.controller('IndexCtrl', function($scope, $state, $modal, $timeout, $location
         djangoAuth.logout().then(handleSuccess, handleError);
     };
     $scope.login = function() {
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: '/static/html/auth/login.html',
             controller: 'LoginCtrl',
             size: 'sm',
@@ -133,7 +134,7 @@ app.controller('IndexCtrl', function($scope, $state, $modal, $timeout, $location
         });
     };
     $scope.register = function() {
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: '/static/html/auth/register.html',
             controller: 'RegisterCtrl',
             size: 'sm',
@@ -149,7 +150,7 @@ app.controller('IndexCtrl', function($scope, $state, $modal, $timeout, $location
         });
     };
     $scope.resetPassword = function() {
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: '/static/html/auth/resetPassword.html',
             controller: 'ResetPasswordCtrl',
             size: 'sm',
@@ -165,7 +166,7 @@ app.controller('IndexCtrl', function($scope, $state, $modal, $timeout, $location
         });
     };
     $scope.resetPasswordConfirm = function(uid, token) {
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: '/static/html/auth/resetPasswordConfirm.html',
             controller: 'ResetPasswordConfirmModalCtrl',
             size: 'sm',

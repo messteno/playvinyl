@@ -136,7 +136,18 @@ DJANGO_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'flat',
+    'dal',
+    'dal_select2',
     'django.contrib.admin',
+    'compressor',
+    'test_pep8',
+    'allauth',
+    'allauth.account',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
+    'autoslug',
+    'django_extensions',
 )
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -152,12 +163,27 @@ INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'formatters': {
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
     'filters': {
         'require_debug_false': {
             '()': 'django.utils.log.RequireDebugFalse'
         }
     },
     'handlers': {
+        'console':{
+            'level':'DEBUG',
+            'class':'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.normpath(os.path.join(SITE_ROOT, '..', '..', 'logs', 'django.request.log')),
+        },
         'mail_admins': {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
@@ -165,8 +191,13 @@ LOGGING = {
         }
     },
     'loggers': {
+        'cities_light': {
+            'handlers':['console'],
+            'propagate': True,
+            'level':'DEBUG',
+        },
         'django.request': {
-            'handlers': ['mail_admins'],
+            'handlers': ['file', 'mail_admins'],
             'level': 'ERROR',
             'propagate': True,
         },
@@ -179,20 +210,12 @@ INTERNAL_IPS = ('127.0.0.1',)
 
 
 # COMPRESSOR SETTINGS
-INSTALLED_APPS += (
-    'compressor',
-)
-
 COMPRESS_ROOT = os.path.normpath(os.path.join(SITE_ROOT, '..',
                                               'frontend', 'dist'))
 COMPRESS_OUTPUT_DIR = ''
 
 
 # PEP8
-INSTALLED_APPS += (
-    'test_pep8',
-)
-
 TEST_PEP8_DIRS = [SITE_ROOT, ]
 TEST_PEP8_EXCLUDE = ['migrations', ]
 
@@ -207,21 +230,10 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-INSTALLED_APPS += (
-    'allauth',
-    'allauth.account',
-)
-
 ACCOUNT_EMAIL_VERIFICATION = None
 
 
 # REST FRAMEWORK
-INSTALLED_APPS += (
-    'rest_framework',
-    'rest_framework.authtoken',
-    'rest_auth',
-)
-
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
@@ -233,10 +245,3 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     ),
 }
-
-
-INSTALLED_APPS += (
-    'autocomplete_light',
-    'autoslug',
-    'django_extensions',
-)

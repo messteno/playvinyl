@@ -4,7 +4,7 @@
  * @ngInject
  */
 var app = angular.module('playvinyl');
-app.controller('ResetPasswordCtrl', function ($scope, $modalInstance, djangoAuth, Validate) {
+app.controller('ResetPasswordCtrl', function ($scope, $uibModalInstance, djangoAuth, Validate) {
     $scope.model = {'email':''};
     $scope.complete = false;
     $scope.resetPassword = function(formData){

@@ -12,7 +12,7 @@ app
         $scope.resetPasswordConfirm(uid, token);
     }
 })
-.controller('ResetPasswordConfirmModalCtrl', function ($scope, $modalInstance, $routeParams, djangoAuth, Validate, uid, token) {
+.controller('ResetPasswordConfirmModalCtrl', function ($scope, $uibModalInstance, $routeParams, djangoAuth, Validate, uid, token) {
     $scope.model = {'new_password1': '','new_password2': ''};
     $scope.confirmReset = function(formData) {
         $scope.errors = [];
@@ -20,7 +20,7 @@ app
         if (!formData.$invalid) {
             djangoAuth.confirmReset(uid, token, $scope.model.new_password1, $scope.model.new_password2)
             .then(function(){
-                $modalInstance.close('login');
+                $uibModalInstance.close('login');
             },function(data){
                 $scope.errors = data;
             });

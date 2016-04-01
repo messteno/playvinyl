@@ -51,7 +51,7 @@ app.service('djangoAuth', function auth($q, $http, $cookies, $rootScope, Request
             }).then(function(data) {
                 if (!djangoAuth.useSession) {
                     $http.defaults.headers.common.Authorization = 'Token ' + data.key;
-                    $cookies.token = data.key;
+                    $cookies.put('token', data.key);
                 }
                 $rootScope.$broadcast('djangoAuth.logged_in', data);
             });
@@ -69,7 +69,7 @@ app.service('djangoAuth', function auth($q, $http, $cookies, $rootScope, Request
             }).then(function(data) {
                 if (!djangoAuth.useSession) {
                     $http.defaults.headers.common.Authorization = 'Token ' + data.key;
-                    $cookies.token = data.key;
+                    $cookies.put('token', data.key);
                 }
                 $rootScope.$broadcast('djangoAuth.logged_in', data);
             });
@@ -80,11 +80,11 @@ app.service('djangoAuth', function auth($q, $http, $cookies, $rootScope, Request
                 'url': '/logout/'
             }).then(function() {
                 delete $http.defaults.headers.common.Authorization;
-                delete $cookies.token;
+                $cookies.remove('token');
                 $rootScope.$broadcast('djangoAuth.logged_out');
             }, function() {
                 delete $http.defaults.headers.common.Authorization;
-                delete $cookies.token;
+                $cookies.remove('token');
                 $rootScope.$broadcast('djangoAuth.logged_out');
             });
         },
@@ -113,21 +113,21 @@ app.service('djangoAuth', function auth($q, $http, $cookies, $rootScope, Request
             return this.request({
                 'method': 'GET',
                 'url': '/user/'
-            }); 
+            });
         },
         'updateUser': function(data) {
             return this.request({
                 'method': 'PATCH',
                 'url': '/user/',
                 'data': data
-            }); 
+            });
         },
         'verify': function(key) {
             return this.request({
                 'method': 'POST',
                 'url': '/registration/verify-email/',
-                'data': {'key': key} 
-            });            
+                'data': {'key': key}
+            });
         },
         'confirmReset': function(uid, token, password1, password2) {
             return this.request({

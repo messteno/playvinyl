@@ -1,4 +1,3 @@
-import autocomplete_light
 from django import forms
 from django.db import models
 from django.contrib.admin.widgets import AdminFileWidget
@@ -56,21 +55,20 @@ class VinylTrackAdmin(admin.ModelAdmin):
 admin.site.register(VinylTrack, VinylTrackAdmin)
 
 
-class VinylAuthorForm(autocomplete_light.ModelForm):
+class VinylAuthorForm(forms.ModelForm):
     class Meta:
         model = Vinyl
         exclude = []
         widgets = {
-            'authors': autocomplete_light.widgets.MultipleChoiceWidget('VinylAuthorAutoComplete',
-                widget_attrs={'data-widget-bootstrap': 'vinyl-author-widget'},
-            ),
-            'label': autocomplete_light.widgets.ChoiceWidget('VinylLabelAutoComplete',
-                widget_attrs={'data-widget-bootstrap': 'vinyl-label-widget'}
-            ),
-            'styles': autocomplete_light.widgets.MultipleChoiceWidget('VinylStyleAutoComplete',
-                widget_attrs={'data-widget-bootstrap': 'vinyl-styles-widget'}
-            ),
-            # 'release_date': DateWidget(usel10n=True, bootstrap_version=3),
+            # 'authors': autocomplete_light.widgets.MultipleChoiceWidget('VinylAuthorAutoComplete',
+                # widget_attrs={'data-widget-bootstrap': 'vinyl-author-widget'},
+            # ),
+            # 'label': autocomplete_light.widgets.ChoiceWidget('VinylLabelAutoComplete',
+                # widget_attrs={'data-widget-bootstrap': 'vinyl-label-widget'}
+            # ),
+            # 'styles': autocomplete_light.widgets.MultipleChoiceWidget('VinylStyleAutoComplete',
+                # widget_attrs={'data-widget-bootstrap': 'vinyl-styles-widget'}
+            # ),
             'image' : AdminImageWidget,
         }
 

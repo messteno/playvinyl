@@ -4,7 +4,7 @@
  * @ngInject
  */
 var app = angular.module('playvinyl');
-app.controller('LoginCtrl', function($scope, $modalInstance, $location, djangoAuth, Validate) {
+app.controller('LoginCtrl', function($scope, $uibModalInstance, $location, djangoAuth, Validate) {
     $scope.model = {'username':'','password':''};
     $scope.complete = false;
     $scope.login = function(formData) {
@@ -16,7 +16,7 @@ app.controller('LoginCtrl', function($scope, $modalInstance, $location, djangoAu
                     // success case
                     $location.path('/');
                     $location.hash('');
-                    $modalInstance.close();
+                    $uibModalInstance.close();
                 }, function(data) {
                     // error case
                     $scope.errors = data;

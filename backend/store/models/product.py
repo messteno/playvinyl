@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from polymorphic.polymorphic_model import PolymorphicModel
+# from polymorphic.polymorphic_model import PolymorphicModel
 from django.db import models
 from autoslug import AutoSlugField
 

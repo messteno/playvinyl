@@ -4,7 +4,7 @@
  * @ngInject
  */
 var app = angular.module('playvinyl');
-app.controller('RegisterCtrl', function ($scope, $location, $modalInstance, djangoAuth, Validate) {
+app.controller('RegisterCtrl', function ($scope, $location, $uibModalInstance, djangoAuth, Validate) {
     $scope.model = {'username': '', 'password1': '', 'password2': '', 'email': ''};
     $scope.register = function(formData){
         $scope.errors = [];
@@ -15,7 +15,7 @@ app.controller('RegisterCtrl', function ($scope, $location, $modalInstance, djan
                                 $scope.model.password2,
                                 $scope.model.email)
                 .then(function(){
-                    $modalInstance.close();
+                    $uibModalInstance.close();
                 }, function(data){
                     $scope.errors = data;
                 });
